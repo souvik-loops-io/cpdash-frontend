@@ -141,14 +141,7 @@ export default function Download({
                 <p className="text-sm font-bold m-0" style={{ fontFamily: "'Syne', sans-serif" }}>Google Play</p>
               </div>
             </a>
-          </div>
-
-          {/* Rating */}
-          {/* <div className="flex items-center gap-2 text-[13px] text-[#7a7a99]">
-            <span className="text-[#d4900a] font-semibold">★★★★★ 4.9</span>
-            <span>·</span>
-            <span>50k+ Downloads</span>
-          </div> */}
+          </div>      
         </motion.div>
 
         {/* ── Phone mockup ── */}

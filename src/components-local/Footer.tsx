@@ -1,4 +1,5 @@
 import { motion, type Transition, type Variants } from 'motion/react'
+import { SOCIAL_ICONS } from '../assets/utils/NewUtils'
 
 /* ── Types ──────────────────────────────────────────────────── */
 interface FooterProps {
@@ -26,62 +27,8 @@ export default function Footer({
   viewportOnce,
 }: FooterProps) {
   return (
-    // <footer id="footer" className="bg-[#0d0d1a]">
-
-    //   {/* Main footer content */}
-    //   <div className="border-b border-white/10">
-    //     <div className={`${INNER} py-14 flex gap-12 flex-wrap items-start`}>
-
-    //       {/* Brand + CTA */}
-    //       <motion.div
-    //         className="flex-1 min-w-[220px]"
-    //         variants={fadeUp}
-    //         initial="hidden"
-    //         whileInView="visible"
-    //         viewport={viewportOnce}
-    //         transition={transition}
-    //       >
-    //         <span className="block text-[17px] font-extrabold text-white tracking-tight mb-2">CPDASHAI</span>
-    //         <p className="text-sm text-white/40 mb-5">
-    //           Start building <em className="text-[#6c63ff] not-italic">magic</em> today.
-    //         </p>
-    //         <a href="#signup" className={`${BTN_PRI} px-5 py-2.5`}>Get started — it's free</a>
-    //       </motion.div>
-
-    //       {/* Nav columns */}
-    //       <nav className="flex gap-10 flex-wrap" aria-label="Footer">
-    //         {FOOTER_COLS.map((col) => (
-    //           <div key={col.heading}>
-    //             <h4 className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-3.5">
-    //               {col.heading}
-    //             </h4>
-    //             <ul className="list-none flex flex-col gap-2">
-    //               {col.links.map((link) => (
-    //                 <li key={link}>
-    //                   <a href="#" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">
-    //                     {link}
-    //                   </a>
-    //                 </li>
-    //               ))}
-    //             </ul>
-    //           </div>
-    //         ))}
-    //       </nav>
-
-    //     </div>
-    //   </div>
-
-    //   {/* Bottom bar */}
-    //   <div className={`${INNER} py-5 flex items-center justify-between gap-3 flex-wrap`}>
-    //     <span className="text-[17px] font-extrabold text-white tracking-tight">CPDASHAI</span>
-    //     <p className="text-[13px] text-white/30">CPDASHAI Ltd © 2026</p>
-    //   </div>
-
-    // </footer>
-
+   
     <footer id="footer" className="bg-[#3B5FD9]">
-
-
   <div className="py-16 flex flex-col items-center text-center gap-6">
     <div className="flex items-center gap-2">
       <div className="w-8 h-8 bg-white/20 rounded-md flex items-center justify-center">
@@ -97,10 +44,10 @@ export default function Footer({
 
     {/* Buttons */}
     <div className="flex gap-3">
-      <a href="#how-it-works" className="px-5 py-2.5 rounded-full border border-white/60 text-white text-sm font-medium hover:bg-white/10 transition-colors">
+      <a href="#how-it-works" className="px-5 py-2.5 rounded-[15px] border border-white/60 text-white text-sm font-medium hover:bg-white/10 transition-colors">
         How It Works
       </a>
-      <a href="#signup" className="px-5 py-2.5 rounded-full bg-white text-[#3B5FD9] text-sm font-semibold hover:bg-white/90 transition-colors">
+      <a href="#signup" className="px-5 py-2.5 rounded-[15px] bg-white text-[#3B5FD9] text-sm font-semibold hover:bg-white/90 transition-colors">
         Get started — it's free
       </a>
     </div>
@@ -130,13 +77,12 @@ export default function Footer({
 
   {/* Social icons row */}
   <div className={`${INNER} pb-4 flex justify-center gap-4`}>
-    {/* Discord, YouTube, X, LinkedIn, Instagram icons */}
-    {['discord', 'youtube', 'x', 'linkedin', 'instagram'].map((icon) => (
-      <a key={icon} href="#" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-        <span className="text-white text-xs">{/* icon */}</span>
-      </a>
-    ))}
-  </div>
+  {SOCIAL_ICONS.map(({ name, svg }) => (
+    <a key={name} href="#" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+      <span className="text-white">{svg}</span>
+    </a>
+  ))}
+</div>
 
   {/* Bottom bar */}
   <div className={`${INNER} py-4 flex justify-center`}>
