@@ -1,0 +1,10 @@
+/* Only what Tailwind can't handle: keyframes + class-toggled display states */
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Hero cycling words — JS sets --active class to swap displayed word */
+.hero-cycle__word          { display: none; }
+.hero-cycle__word--active  { display: inline; }
