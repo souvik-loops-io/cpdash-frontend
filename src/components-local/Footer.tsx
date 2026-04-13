@@ -81,7 +81,7 @@ export default function Footer({
 
     <footer id="footer" className="bg-[#3B5FD9]">
 
-  {/* Hero CTA Section */}
+
   <div className="py-16 flex flex-col items-center text-center gap-6">
     {/* Logo */}
     <div className="flex items-center gap-2">
