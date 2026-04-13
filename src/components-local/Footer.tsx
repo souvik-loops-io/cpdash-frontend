@@ -83,7 +83,6 @@ export default function Footer({
 
 
   <div className="py-16 flex flex-col items-center text-center gap-6">
-    {/* Logo */}
     <div className="flex items-center gap-2">
       <div className="w-8 h-8 bg-white/20 rounded-md flex items-center justify-center">
         <span className="text-white text-xs font-bold">AI</span>
