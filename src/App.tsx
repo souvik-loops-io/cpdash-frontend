@@ -1,14 +1,12 @@
+import { AnimatePresence } from 'framer-motion'
 import './App.css'
+// import { ScrollProvider } from './assets/utils/context/ScrollContext'
 import HeaderApp from './components-local/HeaderApp'
+import { BTN_PRI, EYEBROW, fadeLeft, fadeRight, fadeUp, INNER, NAV_LINK, SECTION_H, stagger, transition, transitionSlow, viewportOnce } from './assets/utils/NewUtils'
 import HeroSection from './components-local/HeroSection'
 import Feature from './components-local/Feature'
 import HowItWorks from './components-local/HowItWorks'
-import Pricing from './components-local/Pricing'
-import Faq from './components-local/Faq'
-import Contact from './components-local/Contact'
-import Footer from './components-local/Footer'
-import Download from './components-local/Download'
-import { badgePop, BTN_OUT, BTN_PRI, EYEBROW, fadeDown, fadeLeft, fadeRight, fadeUp, FAQ_ITEMS, INNER, NAV_LINK, scaleIn, SECTION_H, stagger, transition, transitionSlow, viewportOnce } from './assets/utils/utils'
+// import CustomCursor from './components-local/com-new/CustomCursor'
 
 
 const FEATURES = [
@@ -20,38 +18,17 @@ const FEATURES = [
 
 function App() {
   return (
-    <>
-
-      {/* ============================================================
-          SECTION 1: HEADER
-          → Extract to: components/Header.tsx
-          ============================================================ */}
-
-      <HeaderApp
-        INNER={INNER}
-        BTN_PRI={BTN_PRI}
-        NAV_LINK={NAV_LINK}
-      />
-      {/* ============================================================
-          SECTION 2: HERO
-          → Extract to: components/Hero.tsx
-          Note: wire up useState + setInterval for word cycling
-          ============================================================ */}
-      <HeroSection
-        INNER={INNER}
-        BTN_PRI={BTN_PRI}
+  <AnimatePresence>
+    {/* <CustomCursor /> */}
+    {/* <ScrollProvider> */}
+      <HeaderApp INNER={INNER} BTN_PRI={BTN_PRI} NAV_LINK={NAV_LINK} />
+      <HeroSection INNER={INNER} BTN_PRI={BTN_PRI}
         fadeUp={fadeUp}
         fadeRight={fadeRight}
         transition={transition}
         transitionSlow={transitionSlow}
         viewportOnce={viewportOnce}
       />
-
-      {/* ============================================================
-          SECTION 3: FEATURES
-          → Extract to: components/Features.tsx
-          Note: marquee duplicates items for seamless CSS loop
-          ============================================================ */}
       <Feature
         INNER={INNER}
         EYEBROW={EYEBROW}
@@ -62,102 +39,16 @@ function App() {
         transition={transition}
         viewportOnce={viewportOnce}
       />
-
-      {/* ============================================================
-          SECTION 4: HOW IT WORKS
-          → Extract to: components/HowItWorks.tsx
-          ============================================================ */}
-
       <HowItWorks
         INNER={INNER}
         fadeUp={fadeUp}
-        fadeLeft={fadeLeft}
+        transition={transition}
+        viewportOnce={viewportOnce}
         stagger={stagger}
-        transition={transition}
-        viewportOnce={viewportOnce}
-      />
-
-
-      {/* ============================================================
-          SECTION 5: DOWNLOAD THE APP
-          → Extract to: components/AppDownload.tsx
-          ============================================================ */}
-      <Download
-        INNER={INNER}
-        EYEBROW={EYEBROW}
-        fadeUp={fadeUp}
         fadeLeft={fadeLeft}
-        fadeRight={fadeRight}
-        badgePop={badgePop}
-        transition={transition}
-        transitionSlow={transitionSlow}
-        viewportOnce={viewportOnce}
       />
-
-
-      {/* ============================================================
-          SECTION 6: PRICING
-          → Extract to: components/Pricing.tsx
-          ============================================================ */}
-      <Pricing
-        INNER={INNER}
-        EYEBROW={EYEBROW}
-        SECTION_H={SECTION_H}
-        BTN_PRI={BTN_PRI}
-        BTN_OUT={BTN_OUT}
-        fadeUp={fadeUp}
-        stagger={stagger}
-        scaleIn={scaleIn}
-        transition={transition}
-        viewportOnce={viewportOnce}
-      />
-
-
-      {/* ============================================================
-          SECTION 7: FAQ
-          → Extract to: components/FAQ.tsx
-          Note: <details> open/close is native HTML; no JS needed
-          ============================================================ */}
-
-      <Faq
-        INNER={INNER}
-        EYEBROW={EYEBROW}
-        SECTION_H={SECTION_H}
-        BTN_PRI={BTN_PRI}
-        items={FAQ_ITEMS}
-        fadeUp={fadeUp}
-        stagger={stagger}
-        transition={transition}
-        transitionSlow={transitionSlow}
-        viewportOnce={viewportOnce}
-      />
-      {/* ============================================================
-          SECTION 8: CONTACT
-          → Extract to: components/Contact.tsx
-          ============================================================ */}
-      <Contact
-        INNER={INNER}
-        fadeDown={fadeDown}
-        fadeLeft={fadeLeft}
-        fadeRight={fadeRight}
-        transition={transition}
-        viewportOnce={viewportOnce}
-      />
-
-
-      {/* ============================================================
-          FOOTER
-          → Extract to: components/Footer.tsx
-          ============================================================ */}
-      <Footer
-        INNER={INNER}
-        BTN_PRI={BTN_PRI}
-        fadeUp={fadeUp}
-        transition={transition}
-        viewportOnce={viewportOnce}
-      />
-
-    </>
+    {/* </ScrollProvider> */}
+  </AnimatePresence>
   )
 }
 

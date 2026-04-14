@@ -1,53 +1,4 @@
-import { useEffect, useRef } from 'react'
 import { motion, type Transition, type Variants } from 'motion/react'
-
-/* ── Carousel ───────────────────────────────────────────────── */
-const CAROUSEL_ITEMS = [
-  'CV Insights',
-  'Compelling Cover Letters',
-  'Standout Portfolio',
-  'Interview Confidence',
-  'Career Clarity',
-  'Perfect Job Matches',
-  'Skill Growth Plans',
-]
-
-function HeroCarousel() {
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const id = setInterval(() => {
-      if (!el) return
-      if (el.scrollLeft >= el.scrollWidth / 2) {
-        el.scrollLeft = 0
-      } else {
-        el.scrollLeft += 1
-      }
-    }, 30)
-    return () => clearInterval(id)
-  }, [])
-
-  const items = [...CAROUSEL_ITEMS, ...CAROUSEL_ITEMS]
-
-  return (
-    <div
-      ref={ref}
-      className="overflow-x-hidden flex gap-3 mb-10 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-    >
-      {items.map((item, idx) => (
-        <div
-          key={idx}
-          aria-hidden={idx >= CAROUSEL_ITEMS.length}
-          className="shrink-0 px-9 py-4 border-2 border-[#5b89ef] text-[#2563EB] font-normal rounded-[15px] text-[clamp(39px,3vw,36px)] leading-tight whitespace-nowrap cursor-pointer bg-transparent"
-        >
-          {item}
-        </div>
-      ))}
-    </div>
-  )
-}
 
 /* ── Props ──────────────────────────────────────────────────── */
 interface HeroSectionProps {
@@ -73,11 +24,11 @@ export default function HeroSection({
   return (
     <section
       id="hero"
-      className="bg-linear-to-br from-[#eef0ff] to-[#f7f8ff] overflow-hidden relative w-full"
+      className="relative bg-white overflow-hidden w-full min-h-[520px] flex items-center"
     >
-      {/* Hero image — slides in from right, desktop only */}
+      {/* 3D spiral — slides in from right */}
       <motion.div
-        className="absolute right-0 top-0 h-full w-[45%] hidden lg:flex items-center justify-end pointer-events-none"
+        className="absolute right-0 top-0 h-full w-[55%] pointer-events-none"
         aria-hidden="true"
         variants={fadeRight}
         initial="hidden"
@@ -86,44 +37,51 @@ export default function HeroSection({
         transition={transitionSlow}
       >
         <img
-          src="/images/hero/heroimg.png"
+          src="/images/hero/hero_module.png"
           alt=""
           className="h-full w-full object-contain object-right"
         />
       </motion.div>
 
-      <div className={`${INNER} relative flex flex-col justify-center py-20 min-h-[520px]`}>
+      {/* Content */}
+      <div className={`${INNER} relative z-10 flex flex-col items-center text-center py-24 w-full`}>
+
+        {/* Main title */}
         <motion.h1
-          className="text-[clamp(48px,7vw,80px)] text-[#1a1a2e] leading-[1.05] tracking-tight mb-6 text-center"
+          className="font-black text-blue-600 leading-none tracking-tighter mb-4"
+          style={{ fontSize: 'clamp(64px, 12vw, 140px)' }}
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
           transition={transition}
         >
-          Automate ideas into
+          CPDASHAI
         </motion.h1>
 
-        <motion.div
+        {/* Subtitle */}
+        <motion.p
+          className="text-[#555] text-[15px] font-normal mb-8"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          transition={{ ...transition, delay: 0.15 }}
+          transition={{ ...transition, delay: 0.12 }}
         >
-          <HeroCarousel />
-        </motion.div>
+          AI-powered Career Health System and Companion
+        </motion.p>
 
+        {/* CTA */}
         <motion.a
           href="#signup"
-          className={`${BTN_PRI} px-7 py-3.5 text-[15px] rounded-xl self-start`}
+          className={`${BTN_PRI} px-6 py-2.5 text-[14px] rounded-lg`}
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          transition={{ ...transition, delay: 0.3 }}
+          transition={{ ...transition, delay: 0.24 }}
         >
-          Get started — it's free
+          Get started
         </motion.a>
       </div>
     </section>
