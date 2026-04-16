@@ -1,4 +1,4 @@
-import { motion, type Transition, type Variants } from 'motion/react'
+import { type Transition, type Variants } from 'motion/react'
 
 
 export const fadeUp: Variants = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } }

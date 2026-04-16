@@ -36,10 +36,12 @@ export default function HeroSection({
         viewport={viewportOnce}
         transition={transitionSlow}
       >
-        <img
+        <motion.img
           src="/images/hero/hero_module.png"
           alt=""
           className="h-full w-full object-contain object-right"
+          animate={{ y: [0, -18, 0] }}
+          transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
         />
       </motion.div>
 

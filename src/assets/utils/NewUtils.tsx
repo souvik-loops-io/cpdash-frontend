@@ -1,4 +1,4 @@
-import { motion, type Transition, type Variants } from 'motion/react'
+import { type Transition, type Variants } from 'motion/react'
 
 
 export const fadeUp: Variants = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } }
@@ -24,11 +24,11 @@ export const SECTION_H = 'text-[clamp(26px,4vw,42px)] text-[#1a1a2e] mb-2.5'
 
 
 export const FAQ_ITEMS = [
-  { q: 'How does the AI-powered CV analysis work?', open: true, a: "Our advanced AI analyzes your CV against thousands of successful resumes in your industry, checking for formatting, keywords, achievements, and ATS compatibility. You'll receive instant, actionable feedback to improve your chances of landing interviews." },
-  { q: 'What makes your interview preparation different?', a: 'Our AI simulates real interview scenarios with adaptive follow-up questions, giving you honest real-time feedback on your answers, tone, and structure.' },
-  { q: 'How accurate is the job matching algorithm?', a: 'Our matching engine achieves a 98% relevance rate by combining skill vectors, location, salary range, and culture-fit signals from your profile.' },
+  { q: 'What is CPDASHAI?', a: 'CPDASHAI is an AI-powered Career Health System and Companion that helps you land your dream job with precision. It combines CV analysis, interview preparation, job matching, and personalised career coaching in one platform.' },
+  { q: 'How does CPDASHAI work?', open: true, a: "Our advanced AI analyzes your CV against thousands of successful resumes in your industry, checking for formatting, keywords, achievements, and ATS compatibility. You'll receive instant, actionable feedback to improve your chances of landing interviews." },
+  { q: 'How does AI analysis work?', a: 'Our AI scans your profile and CV using natural language processing to extract skills, experience, and achievements. It then benchmarks them against industry standards and live job requirements to surface precise gaps and opportunities.' },
+  { q: 'What makes your interview preparation different?', a: 'Our AI simulates real interview scenarios with adaptive follow-up questions, giving you honest real-time feedback on your answers, tone, and structure — so you walk in confident every time.' },
   { q: 'Can I cancel my subscription anytime?', a: 'Yes. Cancel at any time from your account settings — no questions asked, no hidden fees.' },
-  { q: 'Do you offer refunds?', a: "We offer a full refund within 7 days of purchase if you're not satisfied." },
   { q: 'Is my data secure and private?', a: 'Absolutely. All data is encrypted at rest and in transit. We never sell your data and comply fully with GDPR and CCPA.' },
 ]
 

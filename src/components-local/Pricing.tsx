@@ -2,13 +2,11 @@ import { motion, type Transition, type Variants } from 'motion/react'
 
 /* ── Types ──────────────────────────────────────────────────── */
 interface PricingProps {
-  /* layout */
   INNER: string
   EYEBROW: string
   SECTION_H: string
   BTN_PRI: string
   BTN_OUT: string
-  /* animation */
   fadeUp: Variants
   stagger: Variants
   scaleIn: Variants
@@ -16,75 +14,90 @@ interface PricingProps {
   viewportOnce: { once: boolean; margin: string }
 }
 
-interface Plan {
-  name: string
-  subtitle: string
-  price: string
-  priceUnit?: string
-  features: string[]
-  cta: string
-  ctaHref: string
-  featured?: boolean
-}
-
-/* ── Plans data ─────────────────────────────────────────────── */
-const PLANS: Plan[] = [
+/* ── Partner data ───────────────────────────────────────────── */
+const PARTNERS = [
   {
-    name: 'Starter',
-    subtitle: 'Perfect for exploring career possibilities',
-    price: 'Free',
+    role: 'Recruiter',
+    desc: 'Access a curated pool of AI-verified candidates matched precisely to your requirements.',
     features: [
-      'Basic CV Analysis',
-      '3 AI Interview Sessions/month',
-      'Job Matching Algorithm',
-      'Career Resources Library',
-      'Community Access',
+      'AI-matched candidate profiles',
+      'Skill verification reports',
+      'Interview readiness scores',
+      'Direct talent pipeline access',
+      'Placement success analytics',
     ],
-    cta: 'Get Started',
-    ctaHref: '#signup',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+      </svg>
+    ),
   },
   {
-    name: 'Professional',
-    subtitle: 'For serious job seekers ready to level up',
-    price: '$29',
-    priceUnit: '/month',
-    featured: true,
+    role: 'HR',
+    desc: 'Streamline your hiring process with intelligent tools built for modern HR teams.',
     features: [
-      'Advanced CV Optimization',
-      'Unlimited AI Interviews',
-      'Priority Job Matching',
-      'Personalized Career Roadmap',
-      '1-on-1 Career Coaching Call',
-      'Resume Templates Library',
-      'Cover Letter Generator',
+      'Bulk candidate screening',
+      'Team fit assessments',
+      'Automated shortlisting',
+      'HR dashboard & analytics',
+      'ATS integration support',
     ],
-    cta: 'Get Started',
-    ctaHref: '#signup',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    ),
   },
   {
-    name: 'Enterprise',
-    subtitle: 'Tailored solutions for teams and organizations',
-    price: 'Custom',
+    role: 'Educational Institution',
+    desc: 'Bridge the gap between education and employment for your students and alumni.',
     features: [
-      'Everything in Professional',
-      'Team Analytics Dashboard',
-      'Bulk User Management',
-      'Custom Integrations',
-      'Dedicated Account Manager',
-      'Priority Support',
+      'Student placement tracking',
+      'Industry-aligned curriculum insights',
+      'Campus recruitment portal',
+      'Career readiness reports',
+      'Alumni network access',
     ],
-    cta: 'Contact Sales',
-    ctaHref: '#contact',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 10v6M2 10l10-5 10 5-10 5z" /><path d="M6 12v5c3 3 9 3 12 0v-5" />
+      </svg>
+    ),
   },
 ]
+
+const STATS = [
+  { value: '10,000+', label: 'Qualified Candidates' },
+  { value: '500+',    label: 'Partner Companies'    },
+  { value: '95%',     label: 'Placement Success'    },
+  { value: '30 Days', label: 'Average Time to Hire' },
+]
+
+/* ── Wave decoration (inline SVG) ───────────────────────────── */
+function WaveDecor() {
+  return (
+    <svg
+      className="absolute top-0 right-0 w-[55%] h-[55%] pointer-events-none"
+      viewBox="0 0 220 200"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMaxYMin meet"
+    >
+      <ellipse cx="160" cy="60" rx="130" ry="100" fill="rgba(255,255,255,0.07)" />
+      <ellipse cx="190" cy="30" rx="90" ry="70" fill="rgba(255,255,255,0.08)" />
+      <path
+        d="M60 0 Q140 40 220 0 L220 100 Q140 140 60 100 Z"
+        fill="rgba(255,255,255,0.06)"
+      />
+    </svg>
+  )
+}
 
 /* ── Component ──────────────────────────────────────────────── */
 export default function Pricing({
   INNER,
   EYEBROW,
-  SECTION_H,
-  BTN_PRI,
-  BTN_OUT,
   fadeUp,
   stagger,
   scaleIn,
@@ -92,76 +105,139 @@ export default function Pricing({
   viewportOnce,
 }: PricingProps) {
   return (
-    <section id="pricing" className="py-20 bg-white">
-      <div className={`${INNER} text-center`}>
+    <section
+      id="pricing"
+      className="relative py-20 overflow-hidden"
+      style={{ background: 'linear-gradient(160deg, #ffffff 0%, #eef2ff 50%, #f3f0ff 100%)' }}
+    >
+      {/* Soft bg blob */}
+      <div
+        className="absolute -top-32 -left-32 w-[480px] h-[480px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.06) 0%, transparent 70%)' }}
+      />
+      <div
+        className="absolute bottom-0 right-0 w-[360px] h-[360px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%)' }}
+      />
+
+      <div className={`${INNER} relative z-10`}>
 
         {/* Heading */}
         <motion.div
+          className="text-center mb-12"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
           transition={transition}
         >
-          <p className={EYEBROW}>SIMPLE PRICING</p>
-          <h2 className={SECTION_H}>Choose Your Plan</h2>
-          <p className="text-[#8888aa] mb-12">
-            Choose the perfect plan to accelerate your career journey
+          {/* Eyebrow with handshake icon */}
+          <div className="inline-flex items-center gap-2 mb-3">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366f1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z" />
+            </svg>
+            <p className={`${EYEBROW} !mb-0`}>PARTNER WITH US</p>
+          </div>
+
+          <h2 className="text-[clamp(32px,4.5vw,52px)] font-normal text-[#1a1a2e] mb-4 leading-tight">
+            Become a Talent Partner
+          </h2>
+
+          <p className="text-[#8888aa] text-[15px] max-w-[480px] mx-auto leading-relaxed">
+            Discover the perfect partnership opportunity for your organization.
+            Choose the offer that fits your needs.
           </p>
         </motion.div>
 
-        {/* Cards */}
+        {/* Partner cards */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14"
           variants={stagger}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
         >
-          {PLANS.map((plan) => (
+          {PARTNERS.map((p) => (
             <motion.div
-              key={plan.name}
-              className={
-                plan.featured
-                  ? 'bg-white border-2 border-[#6c63ff] rounded-2xl p-8 relative shadow-[0_8px_40px_rgba(108,99,255,0.15)]'
-                  : 'bg-white border border-[#e4e6f0] rounded-2xl p-8 hover:shadow-[0_8px_40px_rgba(108,99,255,0.1)] transition-shadow'
-              }
+              key={p.role}
+              className="relative rounded-3xl overflow-hidden p-7 flex flex-col "
+              style={{
+                background: 'linear-gradient(145deg, #1e40af 0%, #2563eb 45%, #3b82f6 100%)',
+                boxShadow: '0 12px 40px rgba(37,99,235,0.25), 0 2px 8px rgba(0,0,0,0.08)',
+              }}
               variants={scaleIn}
               transition={transition}
+              whileHover={{ y: -6, boxShadow: '0 20px 50px rgba(37,99,235,0.30)' }}
             >
-              {plan.featured && (
-                <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#6c63ff] text-white text-[11px] font-bold px-4 py-1 rounded-full whitespace-nowrap">
-                  Most Popular
-                </span>
-              )}
+              {/* Wave decoration */}
+              <WaveDecor />
 
-              <h3 className="text-xl font-bold text-[#1a1a2e] mb-1.5">{plan.name}</h3>
-              <p className="text-[13px] text-[#8888aa] mb-5">{plan.subtitle}</p>
+              {/* Icon */}
+              <div
+                className="relative z-10 w-12 h-12 rounded-2xl flex items-center justify-center mb-5"
+                style={{ background: 'rgba(255,255,255,0.18)', border: '1px solid rgba(255,255,255,0.3)' }}
+              >
+                {p.icon}
+              </div>
 
-              {plan.priceUnit ? (
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-[40px] font-extrabold text-[#1a1a2e]">{plan.price}</span>
-                  <span className="text-sm text-[#8888aa]">{plan.priceUnit}</span>
-                </div>
-              ) : (
-                <p className="text-[40px] font-extrabold text-[#1a1a2e] mb-6">{plan.price}</p>
-              )}
+              {/* Title */}
+              <h3 className="relative z-10 text-[22px] font-bold text-white mb-2 leading-snug">
+                {p.role}
+              </h3>
 
-              <ul className="list-none flex flex-col gap-2.5 mb-7">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-[#4a4a6a]">
-                    <span className="text-green-500 font-bold shrink-0">✓</span>
+              {/* Description */}
+              <p className="relative z-10 text-[13px] text-white/75 mb-6 leading-relaxed">
+                {p.desc}
+              </p>
+
+              {/* Feature list */}
+              <ul className="relative z-10 flex flex-col gap-2.5 mb-8 flex-1">
+                {p.features.map((f) => (
+                  <li key={f} className="flex items-center gap-2.5 text-[13px] text-white/85">
+                    <span
+                      className="shrink-0 w-4 h-4 rounded-full flex items-center justify-center"
+                      style={{ background: 'rgba(255,255,255,0.25)' }}
+                    >
+                      <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+                        <path d="M2 5l2.5 2.5L8 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
                     {f}
                   </li>
                 ))}
               </ul>
 
-              <a
-                href={plan.ctaHref}
-                className={`${plan.featured ? BTN_PRI : BTN_OUT} w-full py-2.5 rounded-xl`}
+              {/* CTA */}
+              <button
+                className="relative z-10 w-full py-3 rounded-2xl text-[14px] font-semibold text-[#1e40af] transition-all hover:shadow-lg hover:shadow-white/20"
+                style={{ background: 'white' }}
               >
-                {plan.cta}
-              </a>
+                Book a Demo
+              </button>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Stats row */}
+        <motion.div
+          className="grid grid-cols-2 lg:grid-cols-4 gap-6"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+        >
+          {STATS.map((s, i) => (
+            <motion.div
+              key={s.label}
+              className="flex flex-col items-center text-center px-4 py-6 rounded-2xl border border-white/70 backdrop-blur-sm"
+              style={{ background: 'rgba(255,255,255,0.55)', boxShadow: '0 2px 16px rgba(100,120,255,0.08)' }}
+              variants={fadeUp}
+              transition={{ ...transition, delay: i * 0.08 }}
+            >
+              <span className="text-[clamp(28px,4vw,40px)] font-normal text-[#1e40af] leading-none mb-1">
+                {s.value}
+              </span>
+              <span className="text-[13px] text-[#8888aa] font-medium">{s.label}</span>
             </motion.div>
           ))}
         </motion.div>

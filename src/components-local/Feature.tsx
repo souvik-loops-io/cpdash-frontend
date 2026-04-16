@@ -1,31 +1,85 @@
-import { ArrowRight, FileText, Sparkles, Target, type LucideIcon } from 'lucide-react'
+import { useState } from 'react'
+import { ArrowRight, FileText, Sparkles, Target, Mic, Link2, TrendingUp, type LucideIcon } from 'lucide-react'
 import { motion, type Transition, type Variants } from 'motion/react'
 
 /* ── Types ──────────────────────────────────────────────────── */
-export interface FeatureItem {
-  tag: string
-  title: string
-  desc: string
-  cta: string
-}
-
 interface FeatureProps {
   INNER: string
   EYEBROW: string
   SECTION_H: string
-  features: FeatureItem[]
   fadeUp: Variants
   stagger: Variants
   transition: Transition
   viewportOnce: { once: boolean; margin: string }
 }
 
-/* ── Card meta ───────────────────────────────────────────────── */
-const CARD_META: { label: string; Icon: LucideIcon }[] = [
-  { label: 'Smart Analysis',       Icon: Sparkles   },
-  { label: 'AI Powered',           Icon: FileText   },
-  { label: 'Intelligent Matching', Icon: Target     },
-  { label: 'Career Growth',        Icon: ArrowRight },
+/* ── All feature cards ───────────────────────────────────────── */
+interface FeatureCard {
+  label: string
+  Icon: LucideIcon
+  tag: string
+  title: string
+  desc: string
+  cta: string
+}
+
+const FEATURES: FeatureCard[] = [
+  {
+    label: 'Smart Analysis',
+    Icon: Sparkles,
+    tag: 'CV Analysis',
+    title: 'CV Analysis & ATS Score',
+    desc: 'Get instant ATS compatibility scores with detailed optimization suggestions.',
+    cta: 'Analyze Now',
+  },
+  {
+    label: 'AI Powered',
+    Icon: FileText,
+    tag: 'Cover Letter',
+    title: 'Cover Letter Generator',
+    desc: 'Create personalized cover letters that match job requirements perfectly.',
+    cta: 'Generate Letter',
+  },
+  {
+    label: 'Intelligent Matching',
+    Icon: Target,
+    tag: 'Job Match',
+    title: 'Job Match Engine',
+    desc: 'Find opportunities that align with your skills, experience, and career goals.',
+    cta: 'Find Matches',
+  },
+  {
+    label: 'Career Growth',
+    Icon: ArrowRight,
+    tag: 'Skill Gap',
+    title: 'Skill Gap Analysis',
+    desc: 'Identify missing skills and get personalized learning recommendations.',
+    cta: 'Analyze Skills',
+  },
+  {
+    label: 'Interview Prep',
+    Icon: Mic,
+    tag: 'Interview',
+    title: 'AI Interview Coach',
+    desc: 'Practice with realistic mock interviews and receive instant feedback on your answers.',
+    cta: 'Start Practice',
+  },
+  {
+    label: 'Profile Boost',
+    Icon: Link2,
+    tag: 'LinkedIn',
+    title: 'LinkedIn Optimizer',
+    desc: 'Supercharge your LinkedIn profile with AI-driven keyword and headline suggestions.',
+    cta: 'Optimize Profile',
+  },
+  {
+    label: 'Earn More',
+    Icon: TrendingUp,
+    tag: 'Salary',
+    title: 'Salary Insights',
+    desc: 'Benchmark your worth with live market data and negotiate with confidence.',
+    cta: 'See My Worth',
+  },
 ]
 
 /* ── Component ──────────────────────────────────────────────── */
@@ -33,12 +87,12 @@ export default function Feature({
   INNER,
   EYEBROW,
   SECTION_H,
-  features,
   fadeUp,
-  stagger,
   transition,
   viewportOnce,
 }: FeatureProps) {
+  const [isPaused, setIsPaused] = useState(false)
+
   return (
     <section
       id="features"
@@ -47,10 +101,12 @@ export default function Feature({
     >
       {/* Full-section background image */}
       <div className="absolute inset-0 pointer-events-none select-none">
-        <img
+        <motion.img
           src="/images/others/platform_module.png"
           alt=""
           className="w-full h-full object-cover object-center"
+          animate={{ y: [0, -5, 0] }}
+          transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
         />
       </div>
 
@@ -72,47 +128,61 @@ export default function Feature({
           </p>
         </motion.div>
 
-        {/* Cards grid */}
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-left"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-        >
-          {features.map((f, i) => {
-            const { label, Icon } = CARD_META[i] ?? { label: '', Icon: ArrowRight }
+      </div>
 
-            return (
-              <motion.div
-                key={f.tag}
-                className="rounded-2xl p-6 border border-white/60 backdrop-blur-sm transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-200/40"
-                style={{ background: 'rgba(255,255,255,0.45)' }}
-                variants={fadeUp}
-                transition={transition}
+      {/* ── Carousel (full-bleed, no INNER constraint) ── */}
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+        transition={{ ...transition, delay: 0.15 }}
+      >
+        <div
+          className="overflow-hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Track — doubled for seamless loop */}
+          <div
+            className="flex gap-5 w-max px-5"
+            style={{
+              animation: 'marquee-scroll 32s linear infinite',
+              animationPlayState: isPaused ? 'paused' : 'running',
+            }}
+          >
+            {[...FEATURES, ...FEATURES].map((f, i) => (
+              <div
+                key={`${f.tag}-${i}`}
+                className="rounded-2xl p-6 border border-white/60 backdrop-blur-sm shrink-0 flex flex-col text-left hover:-translate-y-1 transition-transform"
+                style={{
+                  width: 260,
+                  background: 'rgba(255,255,255,0.45)',
+                  boxShadow: '0 2px 20px rgba(100,80,200,0.08)',
+                }}
               >
                 <p className="mb-2 text-[11px] text-[#8888aa] font-medium tracking-wide uppercase">
-                  {label}
+                  {f.label}
                 </p>
 
-                <h3 className="text-[1.6rem] font-normal text-[#1a1a2e] mb-3 leading-snug">
+                <h3 className="text-[1.4rem] font-normal text-[#1a1a2e] mb-3 leading-snug">
                   {f.title}
                 </h3>
 
-                <p className="text-[13px] text-[#666688] mb-5 leading-relaxed">{f.desc}</p>
+                <p className="text-[13px] text-[#666688] mb-5 leading-relaxed flex-1">{f.desc}</p>
 
                 <div className="flex justify-between items-center">
                   <a href="#" className="text-[13px] text-[#6c63ff] no-underline hover:underline">
                     {f.cta} →
                   </a>
-                  <Icon size={16} className="text-[#2563eb]" />
+                  <f.Icon size={16} className="text-[#2563eb]" />
                 </div>
-              </motion.div>
-            )
-          })}
-        </motion.div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
 
-      </div>
     </section>
   )
 }
