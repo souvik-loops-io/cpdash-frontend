@@ -271,7 +271,7 @@ export default function Contact({
  
             <button
               type="submit"
-              className="w-full text-sm font-semibold bg-[#3b82f6] text-white py-3 rounded-xl hover:bg-[#2563eb] transition-colors cursor-pointer border-none flex items-center justify-center gap-2"
+              className="cursor-pointer w-full text-sm font-semibold bg-[#3b82f6] text-white py-3 rounded-xl hover:bg-[#2563eb] transition-colors cursor-pointer border-none flex items-center justify-center gap-2"
             >
               Send Message
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

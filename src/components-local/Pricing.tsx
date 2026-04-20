@@ -1,3 +1,4 @@
+import React from 'react'
 import { motion, type Transition, type Variants } from 'motion/react'
 
 /* ── Types ──────────────────────────────────────────────────── */
@@ -18,6 +19,11 @@ interface PricingProps {
 const PARTNERS = [
   {
     role: 'Recruiter',
+    imgSrc: '/images/talent/talent1.png',
+    imgClass: 'absolute inset-0 w-full -top-[44%] h-full object-contain object-center pointer-events-none select-none z-0',
+    imgStyle: { opacity: 0.6, transform: 'scale(1.3)', transformOrigin: 'center' },
+    imgBottomClass: 'absolute -bottom-[10%] left-0 w-[100%] h-[55%] object-contain object-bottom pointer-events-none select-none z-0',
+    imgBottomStyle: { opacity: 0.45, transform: 'translateX(-50%) scaleX(-1)' },
     desc: 'Access a curated pool of AI-verified candidates matched precisely to your requirements.',
     features: [
       'AI-matched candidate profiles',
@@ -34,6 +40,9 @@ const PARTNERS = [
   },
   {
     role: 'HR',
+    imgSrc: '/images/talent/talent2.png',
+    imgClass: 'absolute -top-[20%] -right-[25%] h-full w-[85%] object-contain object-right pointer-events-none select-none z-0',
+    imgStyle: { opacity: 0.55 },
     desc: 'Streamline your hiring process with intelligent tools built for modern HR teams.',
     features: [
       'Bulk candidate screening',
@@ -51,6 +60,9 @@ const PARTNERS = [
   },
   {
     role: 'Educational Institution',
+    imgSrc: '/images/talent/talent3.png',
+    imgClass: 'absolute -top-[10%] left-0 right-0 w-full h-[58%] object-contain object-top pointer-events-none select-none z-0',
+    imgStyle: { opacity: 0.55 },
     desc: 'Bridge the gap between education and employment for your students and alumni.',
     features: [
       'Student placement tracking',
@@ -74,25 +86,6 @@ const STATS = [
   { value: '30 Days', label: 'Average Time to Hire' },
 ]
 
-/* ── Wave decoration (inline SVG) ───────────────────────────── */
-function WaveDecor() {
-  return (
-    <svg
-      className="absolute top-0 right-0 w-[55%] h-[55%] pointer-events-none"
-      viewBox="0 0 220 200"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="xMaxYMin meet"
-    >
-      <ellipse cx="160" cy="60" rx="130" ry="100" fill="rgba(255,255,255,0.07)" />
-      <ellipse cx="190" cy="30" rx="90" ry="70" fill="rgba(255,255,255,0.08)" />
-      <path
-        d="M60 0 Q140 40 220 0 L220 100 Q140 140 60 100 Z"
-        fill="rgba(255,255,255,0.06)"
-      />
-    </svg>
-  )
-}
 
 /* ── Component ──────────────────────────────────────────────── */
 export default function Pricing({
@@ -160,19 +153,36 @@ export default function Pricing({
           {PARTNERS.map((p) => (
             <motion.div
               key={p.role}
-              className="relative rounded-3xl overflow-hidden p-7 flex flex-col "
+              className="relative rounded-3xl overflow-hidden p-7 flex flex-col"
               style={{
                 background: 'linear-gradient(145deg, #1e40af 0%, #2563eb 45%, #3b82f6 100%)',
                 boxShadow: '0 12px 40px rgba(37,99,235,0.25), 0 2px 8px rgba(0,0,0,0.08)',
+                minHeight: 540,
               }}
               variants={scaleIn}
               transition={transition}
               whileHover={{ y: -6, boxShadow: '0 20px 50px rgba(37,99,235,0.30)' }}
             >
-              {/* Wave decoration */}
-              <WaveDecor />
+              <motion.img
+                src={p.imgSrc}
+                alt=""
+                className={p.imgClass}
+                style={p.imgStyle}
+                animate={{ y: [0, -14, 0] }}
+                transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
+              />
 
-              {/* Icon */}
+              {'imgBottomClass' in p && (
+                <motion.img
+                  src={p.imgSrc}
+                  alt=""
+                  className={p.imgBottomClass as string}
+                  style={p.imgBottomStyle as React.CSSProperties}
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{ repeat: Infinity, duration: 4.5, ease: 'easeInOut' }}
+                />
+              )}
+
               <div
                 className="relative z-10 w-12 h-12 rounded-2xl flex items-center justify-center mb-5"
                 style={{ background: 'rgba(255,255,255,0.18)', border: '1px solid rgba(255,255,255,0.3)' }}
@@ -180,17 +190,14 @@ export default function Pricing({
                 {p.icon}
               </div>
 
-              {/* Title */}
               <h3 className="relative z-10 text-[22px] font-bold text-white mb-2 leading-snug">
                 {p.role}
               </h3>
 
-              {/* Description */}
               <p className="relative z-10 text-[13px] text-white/75 mb-6 leading-relaxed">
                 {p.desc}
               </p>
 
-              {/* Feature list */}
               <ul className="relative z-10 flex flex-col gap-2.5 mb-8 flex-1">
                 {p.features.map((f) => (
                   <li key={f} className="flex items-center gap-2.5 text-[13px] text-white/85">
@@ -207,15 +214,16 @@ export default function Pricing({
                 ))}
               </ul>
 
-              {/* CTA */}
               <button
-                className="relative z-10 w-full py-3 rounded-2xl text-[14px] font-semibold text-[#1e40af] transition-all hover:shadow-lg hover:shadow-white/20"
+                className="relative z-10 w-full py-3 rounded-2xl text-[14px] font-semibold text-[#1e40af] transition-all hover:shadow-lg hover:shadow-white/20 cursor-pointer"
                 style={{ background: 'white' }}
               >
                 Book a Demo
               </button>
             </motion.div>
           ))}
+
+
         </motion.div>
 
         {/* Stats row */}

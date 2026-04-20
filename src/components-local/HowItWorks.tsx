@@ -147,7 +147,7 @@ export default function HowItWorks({
 
         {/* Glass container */}
         <motion.div
-          className="w-full rounded-3xl border border-white/50 backdrop-blur-md p-8 shadow-xl shadow-blue-100/40"
+          className="w-full rounded-3xl border border-white/50 backdrop-blur-md p-4 sm:p-8 shadow-xl shadow-blue-100/40"
           style={{ background: 'rgba(255,255,255,0.12)' }}
         >
           {/* Sub-heading */}
@@ -179,9 +179,8 @@ export default function HowItWorks({
                 <motion.div
                   key={member.name}
                   onClick={() => handleSelect(i)}
-                  className={`${cardPadding} flex flex-col items-center rounded-3xl backdrop-blur-sm border transition-all cursor-pointer select-none`}
+                  className={`${cardPadding} flex flex-col items-center rounded-3xl backdrop-blur-sm border transition-all cursor-pointer select-none w-full max-w-[280px] ${member.large ? 'sm:w-[240px]' : 'sm:w-[200px]'}`}
                   style={{
-                    width: member.large ? 240 : 200,
                     background: member.cardBg,
                     borderColor: isActive ? member.accentColor : 'rgba(255,255,255,0.7)',
                     boxShadow: isActive
@@ -225,16 +224,16 @@ export default function HowItWorks({
 
           {/* Bottom row — hand + detail card */}
           <motion.div
-            className="grid grid-cols-1 lg:grid-cols-2 w-full rounded-3xl border border-white/60 backdrop-blur-sm"
-            style={{ height: 420, background: 'rgba(255,255,255,0.14)', boxShadow: '0 8px 40px rgba(100,120,255,0.10), 0 2px 8px rgba(0,0,0,0.04)' }}
+            className="grid grid-cols-1 lg:grid-cols-2 w-full rounded-3xl border border-white/60 backdrop-blur-sm overflow-hidden"
+            style={{ background: 'rgba(255,255,255,0.14)', boxShadow: '0 8px 40px rgba(100,120,255,0.10), 0 2px 8px rgba(0,0,0,0.04)' }}
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
             transition={{ ...transition, delay: 0.2 }}
           >
-            {/* Hand holding phone image */}
-            <div className="flex items-end justify-center h-full overflow-hidden">
+            {/* Hand holding phone image — desktop only */}
+            <div className="hidden lg:flex items-end justify-center h-[420px] overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={selected.name + '-hand'}
@@ -250,14 +249,15 @@ export default function HowItWorks({
             </div>
 
             {/* Detail panel */}
-            <div
-              className="relative h-[90%] w-[60%] overflow-hidden rounded-3xl mt-5 shadow-xl shadow-black/10 border border-white/30 backdrop-blur-sm"
-              style={{ background: 'rgba(255,255,255,0.16)' }}
-            >
+            <div className="flex items-center justify-center p-4 sm:p-5 lg:h-[420px] lg:p-0">
+              <div
+                className="relative w-full lg:w-[75%] rounded-3xl shadow-xl shadow-black/10 border border-white/30 backdrop-blur-sm overflow-hidden"
+                style={{ background: 'rgba(255,255,255,0.16)', minHeight: 380 }}
+              >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={selected.name}
-                  className="absolute inset-0 flex flex-col items-center justify-center text-center px-8 py-7"
+                  className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 sm:px-8 py-7"
                   initial={{ opacity: 0, x: 48 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -48 }}
@@ -291,13 +291,14 @@ export default function HowItWorks({
                   </ul>
 
                   <button
-                    className="w-full text-white text-[13px] font-semibold rounded-2xl py-3 transition-opacity hover:opacity-90"
+                    className=" cursor-pointer w-full text-white text-[13px] font-semibold rounded-2xl py-3 transition-opacity hover:opacity-90"
                     style={{ background: selected.accentColor }}
                   >
                     Start With {selected.name}
                   </button>
                 </motion.div>
               </AnimatePresence>
+              </div>
             </div>
           </motion.div>
 

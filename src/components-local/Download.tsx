@@ -37,7 +37,7 @@ export default function Download({
         className="absolute left-0 top-50 w-[60%] pointer-events-none select-none"
         style={{ height: '90%', left: '-10%' }}
         animate={{ y: [0, -15, 0] }}
-          transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
+        transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
       />
 
       <div className={`${INNER} relative z-10 flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16`}>
