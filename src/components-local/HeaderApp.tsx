@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
+import { Link } from 'react-router-dom'
 import IconHeader from "./com-new/svg/IconHeader";
 
 const NAV_ITEMS = [
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Download the App', href: '#download' },
-  { label: "FAQ's", href: '#faq' },
+  { label: 'How It Works', href: '/#how-it-works' },
+  { label: 'Download the App', href: '/#download' },
+  { label: "FAQ's", href: '/#faq' },
+  { label: 'Support', href: '/support', route: true },
 ]
 
 export default function HeaderApp({
@@ -43,12 +45,21 @@ export default function HeaderApp({
             >
               {NAV_ITEMS.map((item) => (
                 <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className={`${NAV_LINK} text-[#1a1a2e]! hover:text-[#6c63ff]! text-[13px]!`}
-                  >
-                    {item.label}
-                  </a>
+                  {item.route ? (
+                    <Link
+                      to={item.href}
+                      className={`${NAV_LINK} text-[#1a1a2e]! hover:text-[#6c63ff]! text-[13px]!`}
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={item.href}
+                      className={`${NAV_LINK} text-[#1a1a2e]! hover:text-[#6c63ff]! text-[13px]!`}
+                    >
+                      {item.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -112,16 +123,27 @@ export default function HeaderApp({
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 320, damping: 32 }}
             >
-              {NAV_ITEMS.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="text-[16px] font-semibold text-[#1a1a2e] py-3 border-b border-[#f0f0f8] no-underline hover:text-blue-600 transition-colors"
-                >
-                  {item.label}
-                </a>
-              ))}
+              {NAV_ITEMS.map((item) =>
+                item.route ? (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    onClick={() => setOpen(false)}
+                    className="text-[16px] font-semibold text-[#1a1a2e] py-3 border-b border-[#f0f0f8] no-underline hover:text-blue-600 transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="text-[16px] font-semibold text-[#1a1a2e] py-3 border-b border-[#f0f0f8] no-underline hover:text-blue-600 transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                )
+              )}
 
               <div className="mt-6 flex flex-col gap-3">
                 <a

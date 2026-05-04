@@ -1,6 +1,8 @@
 import { AnimatePresence } from 'framer-motion'
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import HeaderApp from './components-local/HeaderApp'
+import Support from './components-local/Support'
 import { badgePop, BTN_OUT, BTN_PRI, EYEBROW, FAQ_ITEMS, fadeLeft, fadeRight, fadeUp, INNER, NAV_LINK, scaleIn, SECTION_H, stagger, transition, transitionSlow, viewportOnce, fadeDown } from './assets/utils/NewUtils'
 import HeroSection from './components-local/HeroSection'
 import Feature from './components-local/Feature'
@@ -15,10 +17,9 @@ import Footer from './components-local/Footer'
 
 
 
-function App() {
+function Landing() {
   return (
-  <AnimatePresence>
-      <HeaderApp INNER={INNER} BTN_PRI={BTN_PRI} NAV_LINK={NAV_LINK} />
+    <AnimatePresence>
       <HeroSection INNER={INNER} BTN_PRI={BTN_PRI}
         fadeUp={fadeUp}
         fadeRight={fadeRight}
@@ -43,7 +44,7 @@ function App() {
         stagger={stagger}
         fadeLeft={fadeLeft}
       />
-      <Download 
+      <Download
         INNER={INNER}
         EYEBROW={EYEBROW}
         fadeUp={fadeUp}
@@ -97,7 +98,7 @@ function App() {
        transition={transition}
        viewportOnce={viewportOnce}
       />
-      <Contact 
+      <Contact
         INNER={INNER}
         fadeDown={fadeDown}
         fadeLeft={fadeLeft}
@@ -105,14 +106,26 @@ function App() {
         transition={transition}
         viewportOnce={viewportOnce}
       />
-      <Footer 
+      <Footer
         INNER={INNER}
         BTN_PRI={BTN_PRI}
         fadeUp={fadeUp}
         transition={transition}
         viewportOnce={viewportOnce}
       />
-  </AnimatePresence>
+    </AnimatePresence>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <HeaderApp INNER={INNER} BTN_PRI={BTN_PRI} NAV_LINK={NAV_LINK} />
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/support" element={<Support />} />
+      </Routes>
+    </>
   )
 }
 
