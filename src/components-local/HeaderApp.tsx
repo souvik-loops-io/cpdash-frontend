@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { Link } from 'react-router-dom'
-import IconHeader from "./com-new/svg/IconHeader";
 
 const NAV_ITEMS = [
   { label: 'How It Works', href: '/#how-it-works' },
@@ -29,15 +28,11 @@ export default function HeaderApp({
           {/* Left — Logo */}
           <a href="/" className="flex items-center gap-2 no-underline flex-1">
             <div className="relative flex items-center justify-center w-9 h-9 rounded-xl shrink-0">
-              <IconHeader />
-              <span className="absolute -top-1 -right-1 bg-white text-blue-600 text-[7px] font-black leading-none rounded-full w-[14px] h-[14px] flex items-center justify-center shadow-sm border border-blue-100">
-                AI
-              </span>
+              <img src="/images/logo.png" alt="logo-img" />
             </div>
             <span className="text-[17px] font-extrabold text-blue-600 tracking-tight">CPDASHAI</span>
           </a>
 
-          {/* Center — Nav pill (desktop) */}
           <nav className="hidden md:flex">
             <ul
               className="flex gap-0.5 list-none m-0 p-[10px] rounded-[10px]"
