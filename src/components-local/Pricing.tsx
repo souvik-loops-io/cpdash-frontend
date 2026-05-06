@@ -24,7 +24,7 @@ const PARTNERS = [
     imgStyle: { opacity: 0.6, transform: 'scale(1.3)', transformOrigin: 'center' },
     imgBottomClass: 'absolute -bottom-[10%] left-0 w-[100%] h-[55%] object-contain object-bottom pointer-events-none select-none z-0',
     imgBottomStyle: { opacity: 0.45, transform: 'translateX(-50%) scaleX(-1)' },
-    desc: 'Access a curated pool of AI-verified candidates matched precisely to your requirements.',
+    desc: 'Access our talent pool to find the perfect candidates for your clients.Streamline your workflow from discovery to placement with deep Al behavioral intelligence and Retention-First Recruiting.',
     features: [
       'AI-matched candidate profiles',
       'Skill verification reports',
@@ -43,7 +43,7 @@ const PARTNERS = [
     imgSrc: '/images/talent/talent2.png',
     imgClass: 'absolute -top-[20%] -right-[25%] h-full w-[85%] object-contain object-right pointer-events-none select-none z-0',
     imgStyle: { opacity: 0.55 },
-    desc: 'Streamline your hiring process with intelligent tools built for modern HR teams.',
+    desc: "Build and retain your dream team with the world${apos}s first Al-powered Workforce Intelligence. Move beyond traditional HR with real-time engagement, behavior analytics, and Real-Time Workforce Heatmaps.",
     features: [
       'Bulk candidate screening',
       'Team fit assessments',
@@ -63,7 +63,7 @@ const PARTNERS = [
     imgSrc: '/images/talent/talent3.png',
     imgClass: 'absolute -top-[10%] left-0 right-0 w-full h-[58%] object-contain object-top pointer-events-none select-none z-0',
     imgStyle: { opacity: 0.55 },
-    desc: 'Bridge the gap between education and employment for your students and alumni.',
+    desc: "Empower your students and bridge the gap between academia and industry. Leverage the world’s first AI-powered Student Success Intelligence to track readiness, wellbeing, and career outcomes.",
     features: [
       'Student placement tracking',
       'Industry-aligned curriculum insights',
@@ -157,7 +157,7 @@ export default function Pricing({
               style={{
                 background: 'linear-gradient(145deg, #1e40af 0%, #2563eb 45%, #3b82f6 100%)',
                 boxShadow: '0 12px 40px rgba(37,99,235,0.25), 0 2px 8px rgba(0,0,0,0.08)',
-                minHeight: 540,
+                minHeight: 550,
               }}
               variants={scaleIn}
               transition={transition}
