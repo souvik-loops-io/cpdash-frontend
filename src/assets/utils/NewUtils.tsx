@@ -15,7 +15,7 @@ export const viewportOnce = { once: true, margin: '-80px' } as const
 
 /* ── Shared pieces ─────────────────────────────────────────── */
 export const NAV_LINK = 'text-sm font-medium text-[#4a4a6a] px-3.5 py-1.5 rounded-lg hover:text-[#6c63ff] hover:bg-[#6c63ff]/10 transition-colors no-underline'
-export const BTN_PRI = 'inline-flex items-center justify-center gap-2 text-sm font-semibold bg-[#6c63ff] text-white rounded-lg transition-colors no-underline'
+export const BTN_PRI = 'inline-flex items-center justify-center gap-2 text-sm font-semibold bg-[#2563EB] text-white rounded-lg transition-colors no-underline'
 export const BTN_OUT = 'inline-flex items-center justify-center gap-2 text-sm font-semibold border-2 border-[#6c63ff] text-[#6c63ff] rounded-lg hover:bg-[#6c63ff] hover:text-white transition-colors no-underline'
 export const EYEBROW = 'text-[11px] font-bold tracking-[0.12em] uppercase text-[#6c63ff] mb-2.5'
 export const INNER = 'max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10'

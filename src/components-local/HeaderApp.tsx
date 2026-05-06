@@ -41,21 +41,22 @@ export default function HeaderApp({
           <nav className="hidden md:flex">
             <ul
               className="flex gap-0.5 list-none m-0 p-[10px] rounded-[10px]"
-              style={{ background: 'linear-gradient(135deg, #dde4f8 0%, #ead6f5 100%)' }}
+              // style={{ background: 'linear-gradient(135deg, #dde4f8 0%, #ead6f5 100%)' }}
+              style={{ background: 'linear-gradient(135deg, #2563EB 0%, #C6AAE9 100%)' }}
             >
               {NAV_ITEMS.map((item) => (
                 <li key={item.href}>
                   {item.route ? (
                     <Link
                       to={item.href}
-                      className={`${NAV_LINK} text-[#1a1a2e]! hover:text-[#6c63ff]! text-[13px]!`}
+                      className={`${NAV_LINK} text-[white]! hover:text-[white]! text-[13px]!`}
                     >
                       {item.label}
                     </Link>
                   ) : (
                     <a
                       href={item.href}
-                      className={`${NAV_LINK} text-[#1a1a2e]! hover:text-[#6c63ff]! text-[13px]!`}
+                      className={`${NAV_LINK} text-[white]! hover:text-[white]! text-[13px]!`}
                     >
                       {item.label}
                     </a>

@@ -24,11 +24,14 @@ export default function HeroSection({
   return (
     <section
       id="hero"
-      className="relative bg-white overflow-hidden w-full min-h-[520px] flex items-center"
+      // className="relative bg-white overflow-hidden w-full min-h-[520px] flex items-center"
+      className="relative bg-white overflow-hidden w-full"
+      style={{ height: '520px' }} 
     >
-      {/* 3D spiral — slides in from right */}
+      {/* 3D spiral — fixed size, no responsive shrinking */}
       <motion.div
-        className="absolute right-0 top-0 h-full w-[55%] pointer-events-none"
+        className="absolute right-0 top-0 bottom-0"
+        style={{ width: '70%', minWidth: '600px' }}
         aria-hidden="true"
         variants={fadeRight}
         initial="hidden"
@@ -48,10 +51,10 @@ export default function HeroSection({
       {/* Content */}
       <div className={`${INNER} relative z-10 flex flex-col items-center text-center py-24 w-full`}>
 
-        {/* Main title */}
+        {/* Main title — fixed size, no clamping */}
         <motion.h1
-          className="font-black text-blue-600 leading-none tracking-tighter mb-4"
-          style={{ fontSize: 'clamp(64px, 12vw, 140px)' }}
+          className="font-black text-blue-600 leading-none tracking-tighter mb-4
+          text-[52px] md:text-[length:clamp(100px,12vw,220px)]"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
@@ -63,7 +66,7 @@ export default function HeroSection({
 
         {/* Subtitle */}
         <motion.p
-          className="text-[#555] text-[15px] font-normal mb-8"
+          className="text-[#555] text-[25px] text-[#000000] font-normal mb-8"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
@@ -77,6 +80,7 @@ export default function HeroSection({
         <motion.a
           href="#signup"
           className={`${BTN_PRI} px-6 py-2.5 text-[14px] rounded-lg`}
+          // style={{backgroundColor:'#2563EB'}}
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
