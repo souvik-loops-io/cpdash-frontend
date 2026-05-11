@@ -163,7 +163,7 @@ export default function Footer({
           </a>
         ))}
       </div>
-        <p className="text-[12px] text-white/40 tracking-wide uppercase">CPDASH.AI LTD © 2026</p>
+        <p className="text-[12px] p-2 text-center text-white/40 tracking-wide uppercase">CPDASH.AI LTD © 2026</p>
     </footer>
   )
 }
