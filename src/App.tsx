@@ -14,6 +14,8 @@ import Faq from './components-local/Faq'
 import BlogSection from './components-local/BlogSection'
 import Contact from './components-local/Contact'
 import Footer from './components-local/Footer'
+import PrivacyPolicy from './components-local/PrivacyPolicy'
+import TermsAndConditions from './components-local/TermsAndConditions'
 
 
 
@@ -124,6 +126,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/support" element={<Support />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
       </Routes>
     </>
   )
