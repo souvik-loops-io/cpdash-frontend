@@ -9,7 +9,7 @@ const sections: { title: string; content: { subtitle?: string; text: string }[] 
         text: "By accessing or using the Platform, including the Candidate Dashboard (for students to professionals and immigrants), Talent Partner Dashboard (for recruiters, human resources, and educational institutions), and Community Dashboard (for social networking, collaboration, and live streaming), the User agrees to be bound by these Terms and Conditions. If the User does not agree to these terms, they must not use the Platform.",
       },
       {
-        text: "The User confirms that they are at least 16 years old and have the legal capacity to enter into this Agreement. If using the Platform on behalf of an organisation, the User represents that they have authority to bind that organisation.",
+        text: "The User confirms that they are at least 18 years old and have the legal capacity to enter into this Agreement. If using the Platform on behalf of an organisation, the User represents that they have authority to bind that organisation.",
       },
     ],
   },
@@ -112,7 +112,7 @@ const sections: { title: string; content: { subtitle?: string; text: string }[] 
       },
       {
         subtitle: "9.3 Liability Cap",
-        text: "The Company's total liability for any claims arising out of or relating to this Agreement shall not exceed the amount paid by the User to the Company for the Services (if any) in the twelve (12) months preceding the claim.",
+        text: "The Company's total liability for any claims arising out of or relating to this Agreement shall not exceed the amount paid by the User to the Company for the Services (if any) in the twelve (3) months preceding the claim.",
       },
     ],
   },
