@@ -1,4 +1,5 @@
 import { type Transition, type Variants } from 'motion/react'
+import { Link } from 'react-router-dom'
 import IconHeader from './com-new/svg/IconHeader'
 
 /* ── Types ──────────────────────────────────────────────────── */
@@ -91,6 +92,11 @@ const SOCIALS = [
 ]
 
 /* ── Component ──────────────────────────────────────────────── */
+const ROUTES: Record<string, string> = {
+  'Privacy Policy': '/privacy-policy',
+  'Terms and Conditions': '/terms-and-conditions',
+}
+
 export default function Footer({
   INNER,
 }: FooterProps) {
@@ -139,13 +145,22 @@ export default function Footer({
               {col.heading}
             </h4>
             <ul className="list-none flex flex-col gap-2.5">
-              {col.links.map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-[13px] text-white/75 no-underline hover:text-white transition-colors">
-                    {link}
-                  </a>
-                </li>
-              ))}
+              {col.links.map((link) => {
+                const route = ROUTES[link]
+                return (
+                  <li key={link}>
+                    {route ? (
+                      <Link to={route} className="text-[13px] text-white/75 no-underline hover:text-white transition-colors">
+                        {link}
+                      </Link>
+                    ) : (
+                      <a href="#" className="text-[13px] text-white/75 no-underline hover:text-white transition-colors">
+                        {link}
+                      </a>
+                    )}
+                  </li>
+                )
+              })}
             </ul>
           </div>
         ))}
